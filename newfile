@@ -1,0 +1,11 @@
+line = "abc\0cde\0def\0"
+count = 0
+s1 = "abc"
+count = count + 4
+line + count = "cde\0def\0"
+s2 = "cde"
+count = count + 4
+line + count = "def\0"
+s3 = "def\0"
+count = count + 4
+line + count = "\0"

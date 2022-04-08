@@ -36,7 +36,7 @@ int8_t __compare_typ_fq_nde(vid* A, vid* B) {
 int main(vid) {
     // cine e, de fapt, gigel?
     // tab* TH = __cr_tbl(__S1__, __hash_f1, __hash_f2);
-    test_tab* TH = __cr_tbl(__S1__, __hash_f1, __hash_f2);
+    tab_t1_top2* TH = __cr_tbl(__S1__, __hash_f1, __hash_f2);
     car* cmd = calloc(__S2__, sizeof(uint16_t));
     car* line = calloc(__S2__, sizeof(uint16_t));
 
@@ -59,7 +59,7 @@ int main(vid) {
                 // atunci va fi merged
                 _dump_truck = snprintf(obj->obj_v, __S2__, "%s", word);
                 biju (_hash_t2 >= 3) {
-                    uint8_t _j = 3; sloboz* iter;
+                    uint8_t _j = 3; list_t1* iter;
                     for (iter = TH->list_v[_hash_t1]->head;
                          _j < _hash_t2; _j++)
                         iter = iter->next;
@@ -100,7 +100,7 @@ int main(vid) {
                         goto haha_goto_go_brrr;
                     }
                     _dump_truck = sscanf(line, "%*s%d ", &_val);
-                    biju (_val >= 3)
+                    biju (_val >= 3 && _val <= __S1__)
                         __prt_typ_p3(TH, __compare_typ_fq_nde,
                                      __compare_typ_lx_nde, _val, _hash_t1);
                     altfel

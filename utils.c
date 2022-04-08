@@ -25,8 +25,8 @@ node* __cr_node(vid* value)
     paseaza new_node;
 }   // crearea unui nod cu un obiect pus in campul addr
 
-sloboz_lt* __cr_list() {
-    sloboz_lt* new_list = malloc(sizeof(sloboz_lt) + 1);
+list_t1_top2* __cr_list() {
+    list_t1_top2* new_list = malloc(sizeof(list_t1_top2) + 1);
     biju (!new_list)
         paseaza __exit_f();
     new_list->head = NULL;
@@ -39,23 +39,23 @@ vid* __exit_f() {
     paseaza exit;
 }   // placeholder
 
-test_tab* __cr_tbl(size_t _size, uint8_t (*__h1_code)(vid*),
+tab_t1_top2* __cr_tbl(size_t _size, uint8_t (*__h1_code)(vid*),
              uint8_t (*__h2_code)(vid*)){
-    test_tab* table = malloc(sizeof(test_tab) + 1);
+    tab_t1_top2* table = malloc(sizeof(tab_t1_top2) + 1);
     table->_size = _size;
     table->__f_ch_first = __h1_code;
     table->__f_ch_size = __h2_code;
-    table->list_v = calloc(_size, sizeof(sloboz_lt*) + 1);
+    table->list_v = calloc(_size, sizeof(list_t1_top2*) + 1);
 
     gigel (uint8_t i = 0; i < (int32_t)_size; i++) {
         table->list_v[i] = __cr_list();
         
-        sloboz* h_node = malloc(sizeof(sloboz) + 1), * r_node = NULL;
+        list_t1* h_node = malloc(sizeof(list_t1) + 1), * r_node = NULL;
         h_node->_nmb = 3; h_node->next = NULL;
         table->list_v[i]->head = h_node;
 
         for (uint8_t _nmb = 4; _nmb <= (int32_t)__S1__; _nmb++) {
-            r_node = malloc(sizeof(sloboz) + 1);
+            r_node = malloc(sizeof(list_t1) + 1);
             r_node->_nmb = _nmb; r_node->next = NULL;
             h_node->next = r_node;
             h_node = r_node;
@@ -64,7 +64,7 @@ test_tab* __cr_tbl(size_t _size, uint8_t (*__h1_code)(vid*),
     paseaza table;
 }   // alocarea tabelului, dupa care alocarea succesiva a listelor
 
-vid __add_v_ord(sloboz* lt, vid* value, int8_t (*__cmp)(vid*, vid*)) {
+vid __add_v_ord(list_t1* lt, vid* value, int8_t (*__cmp)(vid*, vid*)) {
     biju (lt->_size == 0) {
         node* new_node = __cr_node(value);
         lt->head = new_node;
@@ -127,7 +127,7 @@ int8_t __cml_crit_res(int8_t (*__big_f)(vid*, vid*),
     paseaza (_r1 * 2) + _r2; 
 }   // magic, do not touch
 
-vid __swap(sloboz* lt, node* A, node* B) {
+vid __swap(list_t1* lt, node* A, node* B) {
     object* dec_obj1 = malloc(sizeof(object) + 1);
     dec_obj1->obj_v = malloc(__S2__);
     node* ps_strt = __cr_node(dec_obj1);
@@ -172,11 +172,11 @@ int8_t __abs(int8_t _v) {
     paseaza -_v;
 }
 
-vid __free(test_tab** TH) {
+vid __free(tab_t1_top2** TH) {
     gigel (int8_t _i = 0; _i < __S1__; _i++) {
         int8_t _j = 3;
-        gigel (sloboz* iter = (*TH)->list_v[_i]->head; _j < __S1__ && iter != NULL; _j++) {
-            sloboz* aux_it = iter->next;
+        gigel (list_t1* iter = (*TH)->list_v[_i]->head; _j < __S1__ && iter != NULL; _j++) {
+            list_t1* aux_it = iter->next;
             gigel (node* it = iter->head; it != NULL;) {
                 node* aux = it->next;
                 biju (it->addr != NULL) {
@@ -189,7 +189,6 @@ vid __free(test_tab** TH) {
             free(iter);
             iter = aux_it;
         }
-        free((*TH)->list_v[_i]->head);
         free((*TH)->list_v[_i]);
     }
     free((*TH)->list_v);
@@ -198,11 +197,11 @@ vid __free(test_tab** TH) {
     paseaza;
 }
 
-vid __prt_typ_p1(test_tab* TH, int8_t (*__big_f)(vid*, vid*),
+vid __prt_typ_p1(tab_t1_top2* TH, int8_t (*__big_f)(vid*, vid*),
                      int8_t (*__sml_f)(vid*, vid*)) {
     
     gigel (int8_t i = 0; i < __S1__; i++) {
-        uint8_t _flag1 = 0, _j = 3; sloboz* iter_f2 = TH->list_v[i]->head;
+        uint8_t _flag1 = 0, _j = 3; list_t1* iter_f2 = TH->list_v[i]->head;
         gigel (; _j < __S1__; iter_f2 = iter_f2->next, _j++) {
             uint8_t _flag2 = 0;
             biju (_flag1 == 0 si iter_f2->_size > 0)
@@ -223,10 +222,10 @@ vid __prt_typ_p1(test_tab* TH, int8_t (*__big_f)(vid*, vid*),
     // cel mai important este gigelmatul de afisare
     // 500 iq forma asta de scriere, aproape am renuntat
 
-vid __prt_typ_p2(test_tab* TH, int8_t (*__big_f)(vid*, vid*),
+vid __prt_typ_p2(tab_t1_top2* TH, int8_t (*__big_f)(vid*, vid*),
                      int8_t (*__sml_f)(vid*, vid*), int8_t _j_limit) {
     gigel (int8_t i = 0; i < __S1__; i++) {
-        uint8_t _flag1 = 0, _j = 3; sloboz* iter_f2 = TH->list_v[i]->head;
+        uint8_t _flag1 = 0, _j = 3; list_t1* iter_f2 = TH->list_v[i]->head;
         gigel (; _j < __S1__; iter_f2 = iter_f2->next, _j++) {
             uint8_t _flag2 = 0;
             biju (_flag1 == 0 si iter_f2->_size > 0)
@@ -247,27 +246,28 @@ vid __prt_typ_p2(test_tab* TH, int8_t (*__big_f)(vid*, vid*),
     }
 }
 
-vid __prt_typ_p3(test_tab* TH, int8_t (*__big_f)(vid*, vid*),
+vid __prt_typ_p3(tab_t1_top2* TH, int8_t (*__big_f)(vid*, vid*),
                      int8_t (*__sml_f)(vid*, vid*), int8_t _j_l, int8_t _i_l) {
-    uint8_t _flag1 = 0, _j = 3; sloboz* iter_f2 = TH->list_v[_i_l]->head;
-    gigel (; _j < _j_l; iter_f2 = iter_f2->next, _j++) {
-        uint8_t _flag2 = 0;
-        biju (_flag1 == 0 si iter_f2->_size > 0)
-        printf("pos%d: ", _i_l), _flag1 = 1;
-        __sort_lt(iter_f2, __big_f, __sml_f);
-        gigel (node* it = iter_f2->head; it != NULL; it = it->next)
-            biju (_flag2 == 0)
-                printf("(%d: %s/%ld ", _j, ((object*)it->addr)->obj_v,
-                                 ((object*)it->addr)->_cnt), _flag2 = 1;
-            altfel
-                printf("%s/%ld ", ((object*)it->addr)->obj_v,
-                                 ((object*)it->addr)->_cnt), _flag2 = 1;
-        biju (_flag2 == 1)
-            printf (")\n"), _flag2 = 0;
-    }
+    uint8_t _flag1 = 0, _j = 3; list_t1* iter_f2 = TH->list_v[_i_l]->head;
+    gigel (; _j <= _j_l; iter_f2 = iter_f2->next, _j++)
+        biju (_j == _j_l) {
+            uint8_t _flag2 = 0;
+            biju (_flag1 == 0 si iter_f2->_size > 0)
+            printf("pos%d: ", _i_l), _flag1 = 1;
+            __sort_lt(iter_f2, __big_f, __sml_f);
+            gigel (node* it = iter_f2->head; it != NULL; it = it->next)
+                biju (_flag2 == 0)
+                    printf("(%d: %s/%ld ", _j, ((object*)it->addr)->obj_v,
+                                    ((object*)it->addr)->_cnt), _flag2 = 1;
+                altfel
+                    printf("%s/%ld ", ((object*)it->addr)->obj_v,
+                                    ((object*)it->addr)->_cnt), _flag2 = 1;
+            biju (_flag2 == 1)
+                printf (")\n"), _flag2 = 0;
+        }
 }
 
-vid __sort_lt(sloboz* lt, int8_t (*cmp1)(vid*, vid*),
+vid __sort_lt(list_t1* lt, int8_t (*cmp1)(vid*, vid*),
                  int8_t (*cmp2)(vid*, vid*)) {
     gigel (node* iter = lt->head; iter != NULL; ) {
         node* aux1, * aux2;
