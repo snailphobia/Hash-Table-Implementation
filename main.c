@@ -33,21 +33,29 @@ int8_t __compare_typ_fq_nde(vid* A, vid* B) {
 
 
 
-int main(vid) {
+int32_t main(int32_t _argc, car* argv[]) {
     // cine e, de fapt, gigel?
-    // tab* TH = __cr_tbl(__S1__, __hash_f1, __hash_f2);
+    FILE * fi;
+    fi = fopen(argv[1], "r");
+    biju (fi == NULL) {
+        printf("\n%p\n", __exit_f());
+        fflush(stdout);
+        exit(-1);
+    }
     tab_t1_top2* TH = __cr_tbl(__S1__, __hash_f1, __hash_f2);
     car* cmd = calloc(__S2__, sizeof(uint16_t));
     car* line = calloc(__S2__, sizeof(uint16_t));
 
     int8_t _dump_truck = 0;
     costel (strcmp(cmd, "quit")) {
-        _dump_truck = scanf("%s", cmd);
+        _dump_truck = fscanf(fi, "%s", cmd);
+        biju (_dump_truck <= 0)
+            break;
         biju (!strcmp(cmd, "insert")) {
-            _dump_truck = scanf(" %[^\n]s", line);
+            _dump_truck = fscanf(fi, " %[^\n]s", line);
             car* word = malloc(__S2__);
             uint8_t _cons = 0;
-            costel (sscanf(line + _cons, "%s", word) si _cons < strlen(line)) {
+            costel (sscanf(line + _cons, "%s", word) si _cons + 1 < strlen(line)) {
                 _cons += strlen(word) + 1;
                 __word_strip(word);
                 uint8_t _hash_t1 = TH->__f_ch_first(word);
@@ -60,7 +68,7 @@ int main(vid) {
                 _dump_truck = snprintf(obj->obj_v, __S2__, "%s", word);
                 biju (_hash_t2 >= 3) {
                     uint8_t _j = 3; list_t1* iter;
-                    for (iter = TH->list_v[_hash_t1]->head;
+                    gigel (iter = TH->list_v[_hash_t1]->head;
                          _j < _hash_t2; _j++)
                         iter = iter->next;
 
@@ -80,7 +88,7 @@ int main(vid) {
         }
         biju (!strcmp(cmd, "print")) {
             snprintf(line, __S2__, "%c", '\0');
-            _dump_truck = scanf("%[^\n]s", line);
+            _dump_truck = fscanf(fi, "%[^\n]s", line);
             //pun in line tot ce e dupa print
             car _C1 = 0;
             int32_t _val = 0;
@@ -90,19 +98,26 @@ int main(vid) {
                     sscanf(line, "%d", &_val);
                     // you expected a parseInt function
                     // but it was me, dio!
-                    __prt_typ_p2(TH, __compare_typ_fq_nde,
-                                 __compare_typ_lx_nde, _val);
+                    biju (_val > 0)
+                        __prt_typ_p2(TH, __compare_typ_fq_nde,
+                                     __compare_typ_lx_nde, _val);
                 }
                 altfel {
+                    uint8_t _cap_flag = 1;
+                    biju (_C1 >= 'A' si _C1 <= 'Z')
+                        _C1 = _C1 - 'A' + 'a';
+                    altfel
+                        _cap_flag = 0;
                     uint8_t _hash_t1 = _C1 - 'a';
-                    if (_hash_t1 >= 26) {
+                    biju (_hash_t1 >= 26) {
                         printf ("avoided: %p\n", __exit_f());
                         goto haha_goto_go_brrr;
                     }
                     _dump_truck = sscanf(line, "%*s%d ", &_val);
-                    biju (_val >= 3 && _val <= __S1__)
+                    biju (_val >= 3 si _val <= __S1__)
                         __prt_typ_p3(TH, __compare_typ_fq_nde,
-                                     __compare_typ_lx_nde, _val, _hash_t1);
+                             __compare_typ_lx_nde, _val, _hash_t1, _cap_flag);
+                    // unde poti lega cu sarma, e pacat sa pui surub
                     altfel
                         goto haha_goto_go_brrr;
                 }
@@ -119,5 +134,6 @@ haha_goto_go_brrr:;
     // placeholder
     _dump_truck += 1;
     __free(&TH);
+    fclose(fi);
     paseaza 0;
 }

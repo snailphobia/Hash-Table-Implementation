@@ -21,11 +21,6 @@ typedef struct _node {
     struct _node* next;
 } node;
 
-typedef struct _list {
-    node* head;
-    size_t _size;
-} list;
-
 typedef struct _object {
     car* obj_v;
     size_t _cnt;
@@ -34,26 +29,19 @@ typedef struct _object {
 typedef struct _list_t1{
     size_t _size;
     uint8_t _nmb;
-    struct _list_t1* next;
-    node* head;
+    vid* next;
+    vid* head;
 } list_t1;
 
 typedef struct {
-    list_t1* head;
+    vid* head;
     size_t _size;
 } list_t1_top2;
 
-typedef struct _tab {
+typedef struct {
     size_t _size;
     uint8_t (*__f_ch_first)(vid*);
     uint8_t (*__f_ch_size)(vid*);
-    list*** list_v;
-} tab;
-
-typedef struct {
-    size_t _size;
-    uint8_t (*__f_ch_first)(void*);
-    uint8_t (*__f_ch_size)(void*);
     list_t1_top2** list_v;
 } tab_t1_top2;
 // you started this madness, enjoy it
@@ -72,7 +60,8 @@ vid __prt_typ_p1(tab_t1_top2* TH, int8_t (*__big_f)(vid*, vid*),
 vid __prt_typ_p2(tab_t1_top2* TH, int8_t (*__big_f)(vid*, vid*),
                      int8_t (*__sml_f)(vid*, vid*), int8_t i);
 vid __prt_typ_p3(tab_t1_top2* TH, int8_t (*__big_f)(vid*, vid*),
-                     int8_t (*__sml_f)(vid*, vid*), int8_t i, int8_t j);
+                     int8_t (*__sml_f)(vid*, vid*),
+                     int8_t i, int8_t j, uint8_t _cap_flag);
 vid __add_v_ord(list_t1* lt, vid* value,
                      int8_t (*__cmp)(vid*, vid*));
 vid __swap(list_t1* lt, node* A, node* B);

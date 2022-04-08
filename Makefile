@@ -1,4 +1,4 @@
-CFLAGS = -Wall -Wextra -g -O2
+CFLAGS = -std=c11 -Wall -g -O2
 LDFLAGS = -lm
 CC = gcc
 SRCS = *.c *.h
