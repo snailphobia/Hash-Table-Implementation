@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include <stdint.h>
 #include <string.h>
-#include ".troll.h"
+#include ".macro.h"
 #include <math.h>
 
 #ifndef UTILS_H_INCLUDED
